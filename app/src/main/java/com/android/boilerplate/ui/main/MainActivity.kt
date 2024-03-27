@@ -1,4 +1,4 @@
-package com.android.boilerplate
+package com.android.boilerplate.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
