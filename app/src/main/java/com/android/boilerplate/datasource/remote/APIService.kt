@@ -9,18 +9,18 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface APIService {
-    @GET("/breeds")
+    @GET("breeds")
     suspend fun getBreeds(): BreedsDTO
 
-    @GET("/breeds/{id}")
+    @GET("breeds/{id}")
     suspend fun getBreedById(@Path("id") breedId: String): BreedDTO
 
-    @GET("/facts")
+    @GET("facts")
     suspend fun getFacts(): FactDTO
 
-    @GET("/groups")
+    @GET("groups")
     suspend fun getGroups(): GroupsDTO
 
-    @GET("/groups/{id}")
+    @GET("groups/{id}")
     suspend fun getGroupById(@Path("id") id: String): GroupDTO
 }

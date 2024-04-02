@@ -1,4 +1,4 @@
-package com.android.boilerplate.ui.breedlist
+package com.android.boilerplate.ui.screens.breedlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,9 +12,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class BreedListViewModel(private val breedRepository: BreedRepository) : ViewModel() {
+    private val _stateFlow = MutableStateFlow<BreedListState>(BreedListState.Loading)
 
-    fun getListOfBreeds(): StateFlow<BreedListState> {
-        val stateFlow = MutableStateFlow<BreedListState>(BreedListState.Loading)
+    val stateFlow: StateFlow<BreedListState> = _stateFlow
+    fun getListOfBreeds() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val state = when (val result = breedRepository.getListOfBreeds()) {
@@ -25,10 +26,9 @@ class BreedListViewModel(private val breedRepository: BreedRepository) : ViewMod
                         BreedListState.Error(result.errorMessage ?: "")
                 }
                 withContext(Dispatchers.Main) {
-                    stateFlow.emit(state)
+                    _stateFlow.emit(state)
                 }
             }
         }
-        return stateFlow
     }
 }

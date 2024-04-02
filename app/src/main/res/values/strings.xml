@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Droid-Boilerplate</string>
+    <string name="android">Android</string>
+    <string name="back_button">Back button\n</string>
 </resources>

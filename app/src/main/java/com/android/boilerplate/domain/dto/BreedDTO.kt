@@ -12,8 +12,8 @@ data class BreedAttributes(
     val name: String,
     val description: String,
     val hypoallergenic: Boolean,
-    @Json(name = "min_life") val minLife: Int?,
-    @Json(name = "max_life") val maxLife: Int?
+    @Json(name = "min_life") val minLife: Int? = null,
+    @Json(name = "max_life") val maxLife: Int? = null
 )
 
 data class BreedsDTO(val data: ArrayList<Breed>, val links: Links?)
