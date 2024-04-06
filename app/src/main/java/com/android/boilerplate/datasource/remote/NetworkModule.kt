@@ -1,12 +1,15 @@
 package com.android.boilerplate.datasource.remote
 
+//import com.squareup.moshi.FromJson
+//import com.squareup.moshi.Moshi
+//import com.squareup.moshi.ToJson
+//import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+//import retrofit2.converter.moshi.MoshiConverterFactory
+//import java.util.Calendar
 import com.android.boilerplate.config.AppConfig
 import com.android.boilerplate.datasource.local.SharedPrefKeys
 import com.android.boilerplate.datasource.local.SharedPreferenceManager
-import com.squareup.moshi.FromJson
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.ToJson
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -14,9 +17,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.Calendar
-import java.util.Date
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 val networkModule = module {
@@ -37,11 +38,8 @@ private object APIClient {
                     .build()
             )
             .addConverterFactory(
-                MoshiConverterFactory.create(
-                    Moshi.Builder()
-//                        .add(DateTimeAdapter())
-                        .addLast(KotlinJsonAdapterFactory())
-                        .build()
+                GsonConverterFactory.create(
+                    GsonBuilder().create()
                 )
             )
             .build()

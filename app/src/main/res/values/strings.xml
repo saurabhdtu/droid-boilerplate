@@ -3,4 +3,10 @@
     <string name="android">Android</string>
     <string name="back_button">Back button\n</string>
     <string name="retry">Retry</string>
+    <string name="minimum">Minimum:</string>
+    <string name="maximum">Maximum:</string>
+    <string name="female_weight">Female weight</string>
+    <string name="male_weight">Male weight</string>
+    <string name="life_expectancy">Life expectancy</string>
+    <string name="about_the_dog">About the dog</string>
 </resources>

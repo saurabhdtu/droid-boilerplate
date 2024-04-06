@@ -13,4 +13,4 @@ val Pink40 = Color(0xFF7D5260)
 val BackgroundDark = Color(0xFF292929)
 
 val BorderGray = Color(0xFFDADADA)
-val CardColor = Color(0xFF8F8F8F)
+val CardColor = Color(0xFFDDDDDD)

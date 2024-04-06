@@ -1,30 +1,36 @@
 package com.android.boilerplate.domain.dto
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
+//import com.squareup.moshi.Json
+//import com.squareup.moshi.JsonClass
+
+//@JsonClass(generateAdapter = true)
 data class Breed(
     val id: String,
     val type: String,
-    @Json(name = "attributes")
+//    @Json(name = "attributes")
     val attributes: BreedAttributes
 )
 
-@JsonClass(generateAdapter = true)
+//@JsonClass(generateAdapter = true)
 data class BreedAttributes(
     val name: String,
     val description: String,
     val hypoallergenic: Boolean,
-    @Json(name = "min_life") val minLife: Int? = null,
-    @Json(name = "max_life") val maxLife: Int? = null
+    val life: Life? = null,
+    @SerializedName("male_weight") val maleWeight: MaleWeight? = null,
+    @SerializedName("female_weight") val femaleWeight: FemaleWeight? = null
 )
 
-@JsonClass(generateAdapter = true)
+data class Life(val max: Int, val min: Int)
+data class MaleWeight(val max: Int, val min: Int)
+data class FemaleWeight(val max: Int, val min: Int)
+
+//@JsonClass(generateAdapter = true)
 data class BreedsDTO(
-    @Json(name = "data") val data: ArrayList<Breed>,
-    @Json(name = "links") val links: Links?
+    val data: ArrayList<Breed>,
+    val links: Links?
 )
 
-@JsonClass(generateAdapter = true)
 data class BreedDTO(val data: Breed, val links: Links?)
