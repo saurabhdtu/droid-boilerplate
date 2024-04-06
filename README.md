@@ -1,4 +1,4 @@
-This is a boilerplate code for setting up android  using
+This is a boilerplate code for setting up an Android Project using
 * Jetpack compose
 * Jetpack navigation
 * Viewmodels
