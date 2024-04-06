@@ -11,29 +11,35 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.Calendar
 import java.util.Date
 
+
 val networkModule = module {
     single { APIClient.createClient(get()) }
-
 }
 
 private object APIClient {
     fun createClient(sharedPreferenceManager: SharedPreferenceManager): APIService {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+
         val retrofit = Retrofit.Builder()
             .baseUrl(AppConfig.apiEndpoint)
             .client(
-                OkHttpClient.Builder().addInterceptor(HeaderInterceptor(sharedPreferenceManager))
+                OkHttpClient.Builder()
+                    .addInterceptor(HeaderInterceptor(sharedPreferenceManager))
+                    .addInterceptor(logging)
                     .build()
             )
             .addConverterFactory(
                 MoshiConverterFactory.create(
                     Moshi.Builder()
-                        .add(DateTimeAdapter())
+//                        .add(DateTimeAdapter())
                         .addLast(KotlinJsonAdapterFactory())
                         .build()
                 )
@@ -43,7 +49,7 @@ private object APIClient {
     }
 
 }
-
+/*
 private class DateTimeAdapter {
 
     @ToJson
@@ -58,7 +64,7 @@ private class DateTimeAdapter {
         return calendar
     }
 
-}
+}*/
 
 private class HeaderInterceptor(private val sharedPreferenceManager: SharedPreferenceManager) :
     Interceptor {

@@ -53,6 +53,7 @@ android {
 dependencies {
     implementation(libs.coil)
     implementation(libs.retrofit)
+    implementation(libs.log.interceptor)
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
     implementation(libs.androidx.appcompat)
